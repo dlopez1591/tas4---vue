@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favico.png">
+    <title>Upcoming Events</title>
+</head>
+
+<body class="container-fluid">
+<div id="app">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand logo__navbar" href="#"><img src="./assets/img/Logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center justify-content-lg-end w-100 px-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="./past.html">Past events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Upcoming events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="./contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="./stats.html">Stats</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="col-12 mt-5 d-flex flex-wrap justify-content-center">
+        <h1 class="col-12 my-5 text-center">Upcoming Events</h1>
+        <nav class="category-search">
+            <div class="categories checkbuttonsSection">
+              <div class="form-check form-check-inline" v-for = "category of checkBoxes">
+                <label class="form-check-label" >{{category}}
+                <input  v-model="checked" @change="filtroCruzado"  class="form-check-input" type="checkbox" id="" :value="category">
+                </label>
+                </div>
+            </div>
+            <form  class="search" role="search">
+              <input v-model="keyWordSearch" @keyup="filtroCruzado" class="form-control me-2" type="search" placeholder="Search an Event" aria-label="Search"> 
+            </form>
+          </nav>
+        
+    </header>
+    <main class="row justify-content-center gap-3 mt-5" id="main-js">
+        <div v-if="arrayEvents.length > 0">
+            <div id="cards-section" class="row justify-content-center gap-3 mt-5 d-flex flex-wrap" >
+              <div class="card border-secondary pt-3 col-10 col-md-5 col-xl-3" style="width: 18rem;" v-for = "event of upcomingEvents">
+                <figure id="cardImg">
+                  <img :src="event.image" class="card-img" :alt="event.name">
+                  </figure>
+                  <div class="card-body">
+                  <h5 class="card-title width">{{event.name}}</h5>
+                  <hr>
+                  <p class="card-text">{{event.description}}</p>
+                  </div>
+                  <div class="card-end">
+                  <p>Price: {{event.price}}</p>
+                  <a :href='"details.html?idCard=" + event._id' class="btn btn-secondary col-4 align-self-center" >Details</a>
+                  </div>
+              </div> 
+            </div>
+          </div>
+          <div v-else>
+            <div class="noCoicidences">
+              <h2>Sorry :'(</h2>
+              <h4 >THERES NO COICIDENCES WITH YOUR SEARCH</h4>
+            </div>
+          </div>
+   
+    </main>
+    <footer class="w-100 p-2 mt-3">
+        <div class="iconosSocialMedia">
+              <i class="bi bi-instagram red iconos"></i>
+              <i class="bi bi-facebook red iconos"></i>
+              <i class="bi bi-whatsapp red iconos"></i>
+        </div>
+        <h2>Cohort 41</h2>
+    </footer>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./scripts/upcoming.js"></script>
+</body>
+
+</html>
